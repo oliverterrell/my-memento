@@ -3,6 +3,7 @@
 import { Fragment, useState } from 'react';
 import { CheckCircleFill, ChevronLeft, Gear } from 'react-bootstrap-icons';
 import { AnimatePresence, motion } from 'framer-motion';
+import lodash from 'lodash';
 
 const SelectIcon = ({ selected }: { selected: boolean }) => {
   if (selected) {
@@ -13,6 +14,17 @@ const SelectIcon = ({ selected }: { selected: boolean }) => {
 
 type AnalysisOption = 'big-5' | 'myers-briggs' | 'dsm-iv' | 'enneagram' | 'eqi';
 type AIModel = 'claude' | 'gemini' | 'chat-gpt' | 'deepseek';
+
+const MenuOption = ({ selected, setSelected, value, name }: any) => {
+  return (
+    <div
+      onClick={() => setSelected(value)}
+      className={`flex w-full cursor-pointer flex-row justify-between p-3 hover:bg-gray-600`}
+    >
+      {name} <SelectIcon selected={selected === value} />
+    </div>
+  );
+};
 
 export const SideMenu = () => {
   const [open, setOpen] = useState(false);
@@ -25,11 +37,11 @@ export const SideMenu = () => {
       <AnimatePresence>
         {open ? (
           <motion.aside
-            initial={{ x: -180 }}
+            initial={{ x: -240 }}
             animate={{ x: 0 }}
-            exit={{ x: -180, transition: { ease: 'linear', duration: '0.1' } }}
+            exit={{ x: -240, transition: { ease: 'linear', duration: '0.1' } }}
             transition={{ ease: 'linear', duration: '0.1' }}
-            className={`fixed left-0 top-0 h-screen w-[180px] border-r border-gray-900 bg-gray-700`}
+            className={`fixed left-0 top-0 h-screen w-[240px] border-r border-gray-900 bg-gray-700`}
           >
             <div className={`flex flex-col`}>
               <div
@@ -44,36 +56,26 @@ export const SideMenu = () => {
                 <div className={`w-[90%] border-b border-gray-900 pb-0.5 pl-3 pt-1.5 text-left font-bold`}>
                   Analysis
                 </div>
-                <div
-                  onClick={() => setSelected('big-5')}
-                  className={`flex w-full cursor-pointer flex-row justify-between p-3 hover:bg-gray-600`}
-                >
-                  Big 5 Personality <SelectIcon selected={selected === 'big-5'} />
-                </div>
-                <div
-                  onClick={() => setSelected('myers-briggs')}
-                  className={`flex w-full cursor-pointer flex-row justify-between p-3 hover:bg-gray-600`}
-                >
-                  Myers-Briggs <SelectIcon selected={selected === 'myers-briggs'} />
-                </div>
-                <div
-                  onClick={() => setSelected('dsm-iv')}
-                  className={`flex w-full cursor-pointer flex-row justify-between p-3 hover:bg-gray-600`}
-                >
-                  DSM-IV <SelectIcon selected={selected === 'dsm-iv'} />
-                </div>
-                <div
-                  onClick={() => setSelected('enneagram')}
-                  className={`flex w-full cursor-pointer flex-row justify-between p-3 hover:bg-gray-600`}
-                >
-                  Enneagram <SelectIcon selected={selected === 'enneagram'} />
-                </div>
-                <div
-                  onClick={() => setSelected('eqi')}
-                  className={`flex w-full cursor-pointer flex-row justify-between p-3 hover:bg-gray-600`}
-                >
-                  EQI <SelectIcon selected={selected === 'eqi'} />
-                </div>
+                <MenuOption
+                  selected={selected}
+                  setSelected={setSelected}
+                  value={'big-5'}
+                  name={'Big 5 Personality'}
+                />
+                <MenuOption
+                  selected={selected}
+                  setSelected={setSelected}
+                  value={'myers-briggs'}
+                  name={'Myers-Briggs'}
+                />
+                <MenuOption selected={selected} setSelected={setSelected} value={'dsm-iv'} name={'DSM-IV'} />
+                <MenuOption
+                  selected={selected}
+                  setSelected={setSelected}
+                  value={'enneagram'}
+                  name={'Enneagram'}
+                />
+                <MenuOption selected={selected} setSelected={setSelected} value={'eqi'} name={'EQ-i'} />
               </div>
             </div>
 
@@ -81,30 +83,10 @@ export const SideMenu = () => {
               <div className={`w-[90%] border-b border-gray-900 pb-0.5 pl-3 pt-1.5 text-left font-bold`}>
                 Model
               </div>
-              <div
-                onClick={() => setModel('claude')}
-                className={`flex w-full cursor-pointer flex-row justify-between p-3 hover:bg-gray-600`}
-              >
-                Claude <SelectIcon selected={model === 'claude'} />
-              </div>
-              <div
-                onClick={() => setModel('gemini')}
-                className={`flex w-full cursor-pointer flex-row justify-between p-3 hover:bg-gray-600`}
-              >
-                Gemini <SelectIcon selected={model === 'gemini'} />
-              </div>
-              <div
-                onClick={() => setModel('chat-gpt')}
-                className={`flex w-full cursor-pointer flex-row justify-between p-3 hover:bg-gray-600`}
-              >
-                ChatGPT <SelectIcon selected={model === 'chat-gpt'} />
-              </div>
-              <div
-                onClick={() => setModel('deepseek')}
-                className={`flex w-full cursor-pointer flex-row justify-between p-3 hover:bg-gray-600`}
-              >
-                DeepSeek <SelectIcon selected={model === 'deepseek'} />
-              </div>
+              <MenuOption selected={model} setSelected={setModel} value={'claude'} name={'Claude'} />
+              <MenuOption selected={model} setSelected={setModel} value={'chat-gpt'} name={'ChatGPT'} />
+              <MenuOption selected={model} setSelected={setModel} value={'gemini'} name={'Gemini'} />
+              <MenuOption selected={model} setSelected={setModel} value={'deepseek'} name={'DeepSeek'} />
             </div>
           </motion.aside>
         ) : null}
