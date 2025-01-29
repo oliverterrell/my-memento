@@ -9,7 +9,7 @@ export const SideMenu = () => {
 
   return (
     <Fragment>
-      <List className={'my-auto ml-2 cursor-pointer text-3xl'} onClick={() => setOpen(true)} />
+      <List className={'absolute left-5 mt-5 cursor-pointer text-3xl'} onClick={() => setOpen(true)} />
       <AnimatePresence>
         {open ? (
           <motion.aside
@@ -19,11 +19,14 @@ export const SideMenu = () => {
             transition={{ ease: 'linear', duration: '0.1' }}
             className={`fixed left-0 top-0 h-screen w-[180px] border-r-2 border-gray-400 bg-gray-800`}
           >
-            <div className={`flex flex-col py-2`}>
-              <div className={`flex flex-row justify-between gap-x-6 border-b border-gray-400 px-3 py-4`}>
-                <ChevronLeft className={'cursor-pointer text-xl'} onClick={() => setOpen(false)} />
-                <div className={`text-xl leading-tight`}>Menu</div>
-                <ChevronLeft className={'text-xl text-gray-800'} />
+            <div className={`flex flex-col`}>
+              <div
+                onClick={() => setOpen(false)}
+                className={`bg-yellow w-[calc(100% + 3px)] flex translate-x-0.5 transform cursor-pointer flex-row justify-between gap-x-6 px-3 py-4 text-gray-800`}
+              >
+                <ChevronLeft className={'cursor-pointer text-xl'} />
+                <div className={`text-xl font-bold leading-tight`}>Menu</div>
+                <ChevronLeft className={'text-yellow text-xl'} />
               </div>
               <div className={`m-5 flex flex-col items-start gap-y-3`}>
                 <div>item 1</div>
