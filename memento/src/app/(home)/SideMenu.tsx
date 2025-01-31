@@ -54,7 +54,7 @@ export const SideMenu = () => {
               </div>
               <div className={`my-5 flex flex-col items-start text-left`}>
                 <div className={`w-[90%] border-b border-gray-900 pb-0.5 pl-3 pt-1.5 text-left font-bold`}>
-                  Analysis
+                  Type
                 </div>
                 <MenuOption
                   selected={selected}

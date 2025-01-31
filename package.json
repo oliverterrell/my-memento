@@ -1,8 +1,16 @@
 {
+  "scripts": {
+    "dev": "cd memento && npm run dev",
+    "build": "cd memento && npm run build",
+    "start": "cd memento && npm run start"
+  },
   "devDependencies": {
+    "@tailwindcss/forms": "^0.5.10",
     "@types/lodash": "^4.17.15",
+    "@xpd/tailwind-3dtransforms": "^1.0.3",
     "prettier": "^3.4.2",
-    "prettier-plugin-tailwindcss": "^0.6.11"
+    "prettier-plugin-tailwindcss": "^0.6.11",
+    "tailwind-extended-shadows": "^0.4.1"
   },
   "dependencies": {
     "lodash": "^4.17.21"

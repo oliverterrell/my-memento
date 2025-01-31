@@ -1,3 +1,4 @@
+import { AppProvider } from '@/lib/AppProvider';
 import React from 'react';
 import './globals.css';
 
@@ -9,7 +10,9 @@ export const metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
-      <body className={'bg-gray-800 font-abel text-white'}>{children}</body>
+      <body className={'font-abel bg-gray-800 text-white'}>
+        <AppProvider>{children}</AppProvider>
+      </body>
     </html>
   );
 }
